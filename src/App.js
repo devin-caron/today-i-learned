@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import supabase from "./config/supabase";
+
 import "./style.css";
 
 const initialFacts = [
@@ -53,7 +55,16 @@ const initialFacts = [
 
 function App() {
   const [showForm, setShowForm] = useState(false);
-  const [facts, setFacts] = useState(initialFacts);
+  const [facts, setFacts] = useState([]);
+
+  useEffect(function () {
+    async function getFacts() {
+      const { data: facts, error } = await supabase.from("facts").select("id");
+      setFacts(facts);
+    }
+
+    getFacts();
+  }, []);
 
   return (
     <>
@@ -175,8 +186,8 @@ function CategoryFilter() {
   return (
     <aside>
       <ul>
-        <li class="category">
-          <button class="btn btn-all-categories">All</button>
+        <li className="category">
+          <button className="btn btn-all-categories">All</button>
         </li>
         {CATEGORIES.map((cat) => (
           <li key={cat.name} className="category">
