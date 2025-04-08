@@ -59,10 +59,9 @@ function App() {
 
   useEffect(function () {
     async function getFacts() {
-      const { data: facts, error } = await supabase.from("facts").select("id");
+      const { data: facts, error } = await supabase.from("facts").select("*");
       setFacts(facts);
     }
-
     getFacts();
   }, []);
 
