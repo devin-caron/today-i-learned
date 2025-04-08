@@ -230,7 +230,7 @@ function Fact({ fact }) {
         className="tag"
         style={{
           backgroundColor: CATEGORIES.find((cat) => cat.name === fact.category)
-            .color,
+            ?.color,
         }}
       >
         {fact.category}
