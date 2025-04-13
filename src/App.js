@@ -276,7 +276,7 @@ function Fact({ fact, setFacts }) {
       .eq("id", fact.id)
       .select();
 
-    setIsUpdating(false);
+    //setIsUpdating(false);
 
     if (!error)
       setFacts((facts) =>
